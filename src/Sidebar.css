@@ -1,0 +1,68 @@
+.sidebar{
+    display: flex;
+    flex-direction: column; /*so that sidebar header, headerright and sidebarchat column me rhe*/
+    flex:0.35; /* as the app body is in flex design so we are providing the sidebar 35% width of app body else isko sirf element width hi milti becoz iska parent(app body) flex design me hai*/
+}
+.sidebar__header{
+    height:36px;
+    display: flex;
+    justify-content: space-between;
+    padding:23px;
+    border-right: 1px solid lightgray;
+}
+.sidebar__headerLeft{
+    display:flex;
+    flex:1;
+    align-items: center; 
+}
+.sidebar__username{
+    margin-left: 8px;
+    color:gray;
+}
+
+.sidebar__headerRight{
+    display:flex;
+    align-items: center; 
+}   
+.sidebar__headerRight > .MuiSvgIcon-root{  
+    margin-right: 2vw;
+    font-size: 24px !important;
+    color:red !important;
+}
+
+/*------sidebar search container---------*/
+.sidebar__search{
+    display: flex;
+    align-items: center;
+    background-color: #f6f6f6;
+    height: 39px; /*values taken from real whatsapp*/
+    padding:10px;
+}
+.sidebar__searchContainer{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width:100%;
+    height:35px;
+    border-radius:20px;
+}
+.sidebar__searchContainer >input{
+    border:none;
+    flex:1;  /* to have full width as possible (consume remaining space) */
+    margin-left: 12px;
+    outline: none;
+}
+.sidebar__searchContainer > .MuiSvgIcon-root{
+    color:gray;
+    padding:10px;
+}
+
+/*-----sidebar chat section-------*/
+.sidebar__chats /*for flexing clomun wise for each chats in left chat section*/
+{
+    flex:1; /* so that it takes whole remaining vertical space as .sidebar class ke sbhi components are in flex:column , so isprr flex:1 means vo bache hue space ko pura le lega (check by using some background color)*/
+
+    background-color: white;
+    overflow: auto; /*(not scroll)  To have scrolling effect on more chats */
+
+}

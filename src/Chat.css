@@ -1,0 +1,102 @@
+.chat{
+    flex:0.65;
+    display: flex;
+    flex-direction: column;  /*all chat related section - body,header,footer come in one column*/
+}
+
+.chat__header{
+    padding: 23px;
+    height:36px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+.chat__headerInfo{
+    flex:1; /*takes the that amount of width which remains horizontal , agr right side kuchh hai bhi toh usko dhakel dega*/
+    padding-left: 20px;
+}
+.chat__headerInfo>h3{
+    margin-bottom: 3px;
+    font-weight: 500;
+}
+.chat__headerInfo>p{
+    color: gray;
+}
+.chat__headerRight{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 70px;
+}
+
+.chat__headerRight >input{
+    border: none;
+    border-radius: 20px;
+    padding-left:10px;
+    flex:1;  /* to have full width as possible (consume remaining space) */
+    margin-left: 2px;
+    outline: none;
+    height: 30px;
+}
+
+/*-----------chat mesaage section--------------*/
+
+.chat__body{
+    flex:1;
+    background-image:url("./images/1.png");
+    background-size: cover;
+    background-position: center;
+    padding:30px;
+    overflow-y: scroll;
+}
+
+.chat__message{
+    position: relative;
+    font-size: 15px;
+    padding: 10px 15px 10px 5px;
+    background-color: white;
+    border-radius: 10px;
+    width: fit-content; /*so that div ki width sirf element space jitni hi mile*/
+}
+
+.chat__reciever{
+    margin-left: auto;
+    background-color: rgb(206, 202, 205);
+}
+.chat__name{
+    position: absolute;
+    top:-12px;
+    font-size: xx-small;
+    font-weight: 800;
+}
+.chat__timestamp{
+    margin-left: 10px;
+    font-size: xx-small;
+}
+
+/*-------------chat footer section-------------------*/
+
+.chat__footer{
+    display: flex;
+    justify-content: space-between;
+    margin:0px 10px 0px 10px;
+    align-items: center;
+    height: 62px;
+    border-top:1px solid lightgray;
+}
+.chat__footer>form{
+    margin:0px 10px 0px 10px;
+    display: flex;
+    flex:1;
+
+}
+.chat__footer>form>input{
+    padding:10px;
+    border-radius:30px;
+    flex:1;
+    border:none;
+    outline:none;
+}
+.chat__footer>form>button{
+    display: none;
+}
