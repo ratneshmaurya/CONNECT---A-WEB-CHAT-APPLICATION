@@ -46,7 +46,8 @@ function SidebarChat({id ,name,addNewChat}) {
                 <div className="sidebarChat__info">
                     <h2>{name}</h2>  {/*getting name from sidebar props , don't confuse */}
 
-                    <p>{lastMessages[0]?.message}</p>
+                    {/* if message length >20 then show truncated length */}
+                    <p>{lastMessages[0]?.message.length>20 ? `${lastMessages[0]?.message.substring(0,20)}....`:lastMessages[0]?.message }</p>
                 </div>   
             </div>
         </Link>
