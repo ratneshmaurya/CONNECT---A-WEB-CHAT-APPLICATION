@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/CONNECT---A-WEB-CHAT-APPLICATION/static/css/main.90038e43.chunk.css",
+    "main.js": "/CONNECT---A-WEB-CHAT-APPLICATION/static/js/main.feea7d45.chunk.js",
+    "main.js.map": "/CONNECT---A-WEB-CHAT-APPLICATION/static/js/main.feea7d45.chunk.js.map",
+    "runtime-main.js": "/CONNECT---A-WEB-CHAT-APPLICATION/static/js/runtime-main.807f259a.js",
+    "runtime-main.js.map": "/CONNECT---A-WEB-CHAT-APPLICATION/static/js/runtime-main.807f259a.js.map",
+    "static/js/2.fe5597cb.chunk.js": "/CONNECT---A-WEB-CHAT-APPLICATION/static/js/2.fe5597cb.chunk.js",
+    "static/js/2.fe5597cb.chunk.js.map": "/CONNECT---A-WEB-CHAT-APPLICATION/static/js/2.fe5597cb.chunk.js.map",
+    "index.html": "/CONNECT---A-WEB-CHAT-APPLICATION/index.html",
+    "static/css/main.90038e43.chunk.css.map": "/CONNECT---A-WEB-CHAT-APPLICATION/static/css/main.90038e43.chunk.css.map",
+    "static/js/2.fe5597cb.chunk.js.LICENSE.txt": "/CONNECT---A-WEB-CHAT-APPLICATION/static/js/2.fe5597cb.chunk.js.LICENSE.txt",
+    "static/media/Chat.css": "/CONNECT---A-WEB-CHAT-APPLICATION/static/media/1.5ae5a6e9.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.807f259a.js",
+    "static/js/2.fe5597cb.chunk.js",
+    "static/css/main.90038e43.chunk.css",
+    "static/js/main.feea7d45.chunk.js"
+  ]
+}
