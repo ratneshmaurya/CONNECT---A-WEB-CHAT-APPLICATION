@@ -44,7 +44,7 @@ function Sidebar() {
             <div className="sidebar__header">
 
                 <div className="sidebar__headerLeft">
-                <Avatar src={user.photoURL} onClick={e=>signOut(auth)}/>
+                <Avatar src={user.photoURL}/>
                 <div className='sidebar__username'>
                     <h5>{user.displayName}</h5>
                 </div>
@@ -52,9 +52,15 @@ function Sidebar() {
 
                 <div className="sidebar__headerRight">
                     <IconButton>{/* for having clickabe effect */}
-                    <MoreVertIcon/>
+                    <div className='sidebar__headerRightDropDown'>
+                        <MoreVertIcon/>
+                        <div className='sidebar__headerRightDropDownMenu'>
+                            <p onClick={e=>signOut(auth)}>• Logout</p>
+                        </div>
+                    </div>
                     </IconButton>
                 </div>
+                
             </div>
 
             <div className="sidebar__search">
