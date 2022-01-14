@@ -30,6 +30,39 @@
     color:red !important;
 }
 
+.sidebar__headerRightDropDown{
+    position: relative;
+}
+
+.sidebar__headerRightDropDownMenu{
+    opacity: 0;
+    z-index: 2;
+    text-align: left;
+    width:140px;
+    position:absolute;
+    top:25px;
+    right:10px;
+    font-size: 15px;
+    background-color: white;
+    padding:5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.5);
+    transition: opacity 250ms ease-in-out;
+}
+.sidebar__headerRightDropDownMenu p{
+    padding:2px;
+    border-radius: 5px;
+}
+.sidebar__headerRightDropDownMenu p:hover{
+    background-color: rgb(230, 227, 227);
+}
+
+/* on hvering the more option then show the dropdown menu */
+.sidebar__headerRightDropDown:hover > .sidebar__headerRightDropDownMenu{
+    opacity: 1;
+}
+
+
 /*------sidebar search container---------*/
 .sidebar__search{
     display: flex;
