@@ -44,7 +44,9 @@ function Chat() {
             const docInCollectionRef=collection(docref,"message");
             const q=query(docInCollectionRef,orderBy("timestamp","asc"));
             onSnapshot(q,(snap)=>{
-                setMessages(snap.docs.map((message)=>message.data()));
+                setMessages(snap.docs.map((message)=>
+                    message.data()
+                ));
             })
 
         }
@@ -60,6 +62,10 @@ function Chat() {
     // this input variable stores the current message of user thet he entered and then we push this into database
     const [inputValue,SetInput]=useState("");
 
+    const [password,setPassword]=useState("");//for actual password storing
+    const [passValue,setPassValue]=useState("");//for storing password when user typed the wrong password and then entering anything again from input field;
+    const [countMessageByUser,setcountMessageByUser]=useState(0);//for storing number of message user entered
+
     const sendMessage=(e)=>{
         e.preventDefault(); //don't refresh
 
@@ -74,6 +80,23 @@ function Chat() {
             })
 
         SetInput(""); /* erase input text fron input field after the use */
+
+        setcountMessageByUser(countMessageByUser + 1);
+
+        //if password is wrong or count message >=2
+        if(countMessageByUser >= 2 && password!=="TACMP"){
+            const passwordByUser=prompt("You have exhausted your free limit message (2 messages) qouta, please provide the password to extend the unlimited validity, ask password from - Developer Ratnesh");
+
+            if(passwordByUser!=="TACMP"){
+                alert("You have entererd wrong password !!");
+            }
+
+            //if user enter the rigth password then set the password var value and this helps him to message further
+            if(passwordByUser==="TACMP"){
+                setPassword(passwordByUser);
+            }
+        }
+        
     }
 
     const [searchValue, setSearchValue] = useState(""); //for stroing the search value text
@@ -87,6 +110,34 @@ function Chat() {
     
 
     const [{user},]=useStateValue();
+
+    // const DeleteGroup=()=>{
+    //     const docref=doc(db,"rooms",roomId); //getting ref of doc
+    //     const docInCollectionRef=collection(docref,"message");
+    //     console.log(docInCollectionRef);
+    //     onSnapshot(docInCollectionRef,(querySnapshot)=>{
+    //         querySnapshot.forEach((docs)=>{
+    //             //console.log(docs.id)
+    //             //const docref2=doc(db,docInCollectionRef,docs.id);
+    //             //console.log(docref2);
+    //             //deleteDoc(docs);
+    //         })
+    //     }) 
+
+    //     const docref=doc(db,"rooms",roomId);
+    //     const docInCollectionRef=collection(docref,"message");
+    //     const q=query(docInCollectionRef,orderBy("timestamp","asc"));
+    //     onSnapshot(q,(snap)=>{
+    //         setMessages(snap.docs.map((message)=>
+    //             deleteDoc(message)
+    //         ));
+    //     })
+    // }
+
+    // const ClearMessages=()=>{
+
+    // }
+
     return (
         <div className="chat">
 
@@ -103,9 +154,16 @@ function Chat() {
                     </IconButton>
                     <input value={searchValue} placeholder="Search the message" type="text" onChange={(e)=>{setSearchValue(e.target.value)}}></input>
                     
-                    <IconButton>{/* for having clickabe effect */}
-                    <MoreVertOutlinedIcon/>
-                    </IconButton>
+                    {/* <IconButton>
+                    <div className='chat__headerRightDropDown'>
+                        <MoreVertOutlinedIcon/>
+                        <div className='chat__headerRightDropDownMenu'>
+                            <p onClick={DeleteGroup}>• Delete Group</p>
+                            <p onClick={ClearMessages}>• Clear Messages</p>
+                        </div>
+                    </div>
+                    </IconButton> */}
+
                 </div>
 
             </div>
@@ -119,24 +177,30 @@ function Chat() {
                
                 //using js codes inside html , hence using {} bracktes
                 messages.filter((val)=>{
-                    if(searchValue==""){
+                    if(searchValue===""){
                         return val; //if nothing in search text then simply return all values
                     }
                     else if(val.message.toLowerCase().includes(searchValue.toLowerCase())){
                         return val;
                     }
-                }).map((message)=>(
+                }).map((message,i)=>(
+                    
                     <>
-                    <p className={`chat__message ${user.displayName===message.name && "chat__reciever"}`}>
-                    <span className="chat__name">{message.name }</span>
+                    <p key={i} className={`chat__message ${user.displayName===message.name && "chat__reciever"}`}>
+                        <span className="chat__name">{message.name }</span>
                         {message.message}
-                    <span className="chat__timestamp">
-                        {
-                            new Date(message.timestamp?.seconds*1000).toLocaleTimeString()
-                        }
-                    </span>
+                        <span className="chat__timestamp">
+                            {
+                                new Date(message.timestamp?.seconds*1000).toLocaleTimeString()
+                            }
+                        </span>
+
+                        <IconButton> {/* for having clickabe effect */}
+                        <MoreVertOutlinedIcon/>
+                        </IconButton>
                     </p>
-                    <br/>
+                   
+                    <br key={i+1}/>
                     </>
                     //using <> becoze , we are returning more than one things from map , i.e , <p> and <br>
                 ))
@@ -157,10 +221,29 @@ function Chat() {
                     <AttachFileOutlinedIcon/>
                 </IconButton> */}
 
-                <form>
-                    <input value={inputValue} onChange={(e)=>SetInput(e.target.value)} type="text" placeholder="Type your convo"/>
-                    <button onClick={sendMessage}>send</button>
-                </form>
+                {/* now if user message count is less than 2, or if password is correct then only allow them to make messages */}
+
+                {
+                    (countMessageByUser<=2 || (countMessageByUser>2 && password==="TACMP")) &&
+                    <form>
+                        <input value={inputValue} onChange={(e)=>SetInput(e.target.value)} type="text" placeholder="Type your convo"/>
+                        <button onClick={sendMessage}>send</button>
+                    </form>
+                }
+
+                {/* if user entering wrong password then show him the enter password input field */}
+                {
+                    (countMessageByUser>2 && password!=="TACMP")&&
+                    <form>
+                        <input onChange={(e)=>setPassValue(e.target.value)} type="text" placeholder="ENTER PASSWORD FIRST THEN U CAN SEND MORE MESSAGES"/>
+                        <button onClick={(e)=>{
+                            setPassword(passValue) //setting password whatever user enters
+                            if(password!=="TACMP"){alert("You have entererd wrong password !!");}
+                            e.preventDefault();//so that after submitting the page doesn't get refresh
+                            }}>send</button>
+                    </form>
+                }
+                
 
                 {/* <IconButton>
                 <MicIcon/>
